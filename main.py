@@ -19,10 +19,10 @@ ax.set_ylim([0, map.size])
 for i in range(map.size):
     for j in range(map.size):
         if map.IsObstacle(i,j):
-            rec = Rectangle((i, j), width=1, height=1, color='grey')
+            rec = Rectangle((i, j), width=1, height=1, color='gray')
             ax.add_patch(rec)
         else:
-            rec = Rectangle((i, j), width=1, height=1, edgecolor='grey', facecolor='w')
+            rec = Rectangle((i, j), width=1, height=1, edgecolor='gray', facecolor='w')
             ax.add_patch(rec)
 
 rec = Rectangle((0, 0), width = 1, height = 1, facecolor='b')

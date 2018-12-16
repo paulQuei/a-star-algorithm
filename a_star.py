@@ -56,25 +56,9 @@ class AStar:
     def IsEndPoint(self, p):
         return p.x == self.map.size-1 and p.y == self.map.size-1
 
-    def BuildPath(self, p, ax, plt, start_time):
-        path = []
-        while True:
-            path.insert(0, p) # Insert first
-            if self.IsStartPoint(p):
-                break
-            else:
-                p = p.parent
-        for p in path:
-            rec = Rectangle((p.x, p.y), 1, 1, color='g')
-            ax.add_patch(rec)
-            plt.draw()
-            self.SaveImage(plt)
-        end_time = time.time()
-        print("===== Algorithm finish in", int(end_time-start_time), " seconds")
-
     def SaveImage(self, plt):
         millis = int(round(time.time() * 1000))
-        filename = "/Users/paul/Downloads/img/" + str(millis) + ".png"
+        filename = './' + str(millis) + '.png'
         plt.savefig(filename)
 
     def ProcessPoint(self, x, y, parent):
@@ -101,6 +85,22 @@ class AStar:
             index += 1
         return selected_index
 
+    def BuildPath(self, p, ax, plt, start_time):
+        path = []
+        while True:
+            path.insert(0, p) # Insert first
+            if self.IsStartPoint(p):
+                break
+            else:
+                p = p.parent
+        for p in path:
+            rec = Rectangle((p.x, p.y), 1, 1, color='g')
+            ax.add_patch(rec)
+            plt.draw()
+            self.SaveImage(plt)
+        end_time = time.time()
+        print('===== Algorithm finish in', int(end_time-start_time), ' seconds')
+
     def RunAndSaveImage(self, ax, plt):
         start_time = time.time()
 
@@ -111,10 +111,10 @@ class AStar:
         while True:
             index = self.SelectPointInOpenList()
             if index < 0:
-                print("No path found, algorithm failed!!!")
+                print('No path found, algorithm failed!!!')
                 return
             p = self.open_list[index]
-            rec = Rectangle((p.x, p.y), 1, 1, color='burlywood')
+            rec = Rectangle((p.x, p.y), 1, 1, color='y')
             ax.add_patch(rec)
             self.SaveImage(plt)
 

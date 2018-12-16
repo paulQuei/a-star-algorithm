@@ -5,7 +5,7 @@ import numpy as np
 import point
 
 class RandomMap:
-    def __init__(self, size=80):
+    def __init__(self, size=50):
         self.size = size
         self.obstacle = size//8
         self.GenerateObstacle()
@@ -15,8 +15,9 @@ class RandomMap:
         self.obstacle_point.append(point.Point(self.size//2, self.size//2))
         self.obstacle_point.append(point.Point(self.size//2, self.size//2-1))
 
+
         # Generate an obstacle in the middle
-        for i in range(self.size//4, self.size//2):
+        for i in range(self.size//2-4, self.size//2):
             self.obstacle_point.append(point.Point(i, self.size-i))
             self.obstacle_point.append(point.Point(i, self.size-i-1))
             self.obstacle_point.append(point.Point(self.size-i, i))
