@@ -114,7 +114,7 @@ class AStar:
                 print('No path found, algorithm failed!!!')
                 return
             p = self.open_list[index]
-            rec = Rectangle((p.x, p.y), 1, 1, color='y')
+            rec = Rectangle((p.x, p.y), 1, 1, color='c')
             ax.add_patch(rec)
             self.SaveImage(plt)
 

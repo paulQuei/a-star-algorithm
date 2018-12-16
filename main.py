@@ -8,7 +8,7 @@ from matplotlib.patches import Rectangle
 import random_map
 import a_star
 
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(5, 5))
 
 map = random_map.RandomMap()
 
