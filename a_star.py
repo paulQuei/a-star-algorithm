@@ -13,8 +13,8 @@ import random_map
 class AStar:
     def __init__(self, map):
         self.map=map
-        self.open_list = []
-        self.close_list = []
+        self.open_set = []
+        self.close_set = []
 
     def BaseCost(self, p):
         x_dis = p.x
@@ -45,10 +45,10 @@ class AStar:
         return False
 
     def IsInOpenList(self, p):
-        return self.IsInPointList(p, self.open_list)
+        return self.IsInPointList(p, self.open_set)
 
     def IsInCloseList(self, p):
-        return self.IsInPointList(p, self.close_list)
+        return self.IsInPointList(p, self.close_set)
 
     def IsStartPoint(self, p):
         return p.x == 0 and p.y ==0
@@ -71,13 +71,13 @@ class AStar:
         if not self.IsInOpenList(p):
             p.parent = parent
             p.cost = self.TotalCost(p)
-            self.open_list.append(p)
+            self.open_set.append(p)
 
     def SelectPointInOpenList(self):
         index = 0
         selected_index = -1
         min_cost = sys.maxsize
-        for p in self.open_list:
+        for p in self.open_set:
             cost = self.TotalCost(p)
             if cost < min_cost:
                 min_cost = cost
@@ -106,14 +106,14 @@ class AStar:
 
         start_point = point.Point(0, 0)
         start_point.cost = 0
-        self.open_list.append(start_point)
+        self.open_set.append(start_point)
 
         while True:
             index = self.SelectPointInOpenList()
             if index < 0:
                 print('No path found, algorithm failed!!!')
                 return
-            p = self.open_list[index]
+            p = self.open_set[index]
             rec = Rectangle((p.x, p.y), 1, 1, color='c')
             ax.add_patch(rec)
             self.SaveImage(plt)
@@ -121,8 +121,8 @@ class AStar:
             if self.IsEndPoint(p):
                 return self.BuildPath(p, ax, plt, start_time)
 
-            del self.open_list[index]
-            self.close_list.append(p)
+            del self.open_set[index]
+            self.close_set.append(p)
 
             # Process all neighbors
             x = p.x
